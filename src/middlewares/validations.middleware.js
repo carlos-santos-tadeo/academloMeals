@@ -13,6 +13,27 @@ const validFields = (req, res, next) => {
   next();
 };
 
+exports.createMealValidation = [
+  body('name').notEmpty().withMessage('Name cannot be empty.'),
+  body('price')
+    .notEmpty()
+    .withMessage('Price cannot be empty.')
+    .isInt({ min: 1 })
+    .withMessage('Price must be a number'),
+  validFields,
+];
+
+exports.createRestaurantValidation = [
+  body('name').notEmpty().withMessage('Name cannot be empty.'),
+  body('address').notEmpty().withMessage('Address cannot be empty.'),
+  body('rating')
+    .notEmpty()
+    .withMessage('Rating cannot be empty.')
+    .isInt({ min: 1, max: 5 })
+    .withMessage('Rating must be a number between 1 and 5'),
+  validFields,
+];
+
 exports.createUserValidation = [
   body('name').notEmpty().withMessage('Name cannot be empty.'),
   body('email')
@@ -42,53 +63,6 @@ exports.loginUserValidation = [
   validFields,
 ];
 
-exports.updateUserValidation = [
-  body('name').notEmpty().withMessage('Name cannot be empty.'),
-  body('email')
-    .notEmpty()
-    .withMessage('Email cannot be empty.')
-    .isEmail()
-    .withMessage('Must be a valid email.'),
-  validFields,
-];
-
-exports.createRestaurantValidation = [
-  body('name').notEmpty().withMessage('Name cannot be empty.'),
-  body('address').notEmpty().withMessage('Address cannot be empty.'),
-  body('rating')
-    .notEmpty()
-    .withMessage('Rating cannot be empty.')
-    .isInt({ min: 1, max: 5 })
-    .withMessage('Rating must be a number between 1 and 5'),
-  validFields,
-];
-
-exports.updateRestaurantValidation = [
-  body('name').notEmpty().withMessage('Name cannot be empty.'),
-  body('address').notEmpty().withMessage('Address cannot be empty.'),
-  validFields,
-];
-
-exports.reviewValidation = [
-  body('comment').notEmpty().withMessage('Comment cannot be empty.'),
-  body('rating')
-    .notEmpty()
-    .withMessage('Rating cannot be empty.')
-    .isInt({ min: 1, max: 5 })
-    .withMessage('Rating must be a number between 1 and 5'),
-  validFields,
-];
-
-exports.createMealValidation = [
-  body('name').notEmpty().withMessage('Name cannot be empty.'),
-  body('price')
-    .notEmpty()
-    .withMessage('Price cannot be empty.')
-    .isInt({ min: 1 })
-    .withMessage('Price must be a number'),
-  validFields,
-];
-
 exports.orderValidation = [
   body('quantity')
     .notEmpty()
@@ -100,5 +74,31 @@ exports.orderValidation = [
     .withMessage('mealId cannot be empty.')
     .isInt()
     .withMessage('mealId must be a number'),
+  validFields,
+];
+
+exports.updateRestaurantValidation = [
+  body('name').notEmpty().withMessage('Name cannot be empty.'),
+  body('address').notEmpty().withMessage('Address cannot be empty.'),
+  validFields,
+];
+
+exports.updateUserValidation = [
+  body('name').notEmpty().withMessage('Name cannot be empty.'),
+  body('email')
+    .notEmpty()
+    .withMessage('Email cannot be empty.')
+    .isEmail()
+    .withMessage('Must be a valid email.'),
+  validFields,
+];
+
+exports.reviewValidation = [
+  body('comment').notEmpty().withMessage('Comment cannot be empty.'),
+  body('rating')
+    .notEmpty()
+    .withMessage('Rating cannot be empty.')
+    .isInt({ min: 1, max: 5 })
+    .withMessage('Rating must be a number between 1 and 5'),
   validFields,
 ];

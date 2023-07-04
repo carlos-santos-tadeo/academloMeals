@@ -16,7 +16,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new AppError('You are not logged in! Please log in to get access', 401)
+      new AppError('You are not logged in! Please log in', 401)
     );
   }
 
@@ -47,7 +47,7 @@ exports.protectAdmin = (req, res, next) => {
 
   if (sessionUser.role !== 'admin') {
       return next(
-          new AppError('You do not have the access level for this data.', 403)
+          new AppError('You dont have permissions for this data', 403)
       );
   }
 

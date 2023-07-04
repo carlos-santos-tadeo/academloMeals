@@ -1,6 +1,5 @@
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const Meals = require('../models/meals.model');
 const Restaurants = require('../models/restaurants.model');
 const Reviews = require('../models/reviews.model');
 
@@ -20,7 +19,7 @@ exports.validRestaurant = catchAsync(async (req, res, next) => {
   });
 
   if (!restaurant) {
-    return next(new AppError(`Restaurant with id:${id} was not found 😔`, 404));
+    return next(new AppError(`Restaurant with id:${id} was not found 🥶🥶`, 404));
   }
 
   req.meals = restaurant.meals;
@@ -41,7 +40,7 @@ exports.validReview = catchAsync(async (req, res, next) => {
   });
 
   if (!review) {
-    return next(new AppError(`The review was not found 😔`, 404));
+    return next(new AppError(`The review was not found 🥶🥶`, 404));
   }
 
   req.review = review;
