@@ -9,7 +9,7 @@ const sanitizer = require('perfect-express-sanitizer');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/error.controller');
 
-// routes
+// rutas
 const usersRouter = require('./routes/users.routes');
 const mealsRouter = require('./routes/meals.routes');
 const restaurantsRouter = require('./routes/restaurants.routes');
@@ -41,13 +41,13 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/v1', limiter);
 
-// routes
+// rutas
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/restaurants', restaurantsRouter);
 app.use('/api/v1/meals', mealsRouter);
 app.use('/api/v1/orders', ordersRouter);
 
-// errors
+// errores
 app.all('*', (req, res, next) => {
   return next(
     new AppError(`Cant find ${req.originalUrl} on this server!`, 404)
