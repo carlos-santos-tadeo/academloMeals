@@ -3,9 +3,9 @@ const express = require('express');
 const restaurantsController = require('../controllers/restaurants.controllers');
 
 // middlewares
-const validationsMiddleware = require('../middlewares/validations.middleware');
 const authMiddleware = require('../middlewares/auth.middleware');
 const restaurantsMiddleware = require('../middlewares/restaurants.middleware');
+const validationsMiddleware = require('../middlewares/validations.middleware');
 
 const router = express.Router();
 

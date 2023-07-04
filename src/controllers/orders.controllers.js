@@ -18,10 +18,12 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     return next(new AppError('This meal has not been found', 404));
   }
 
+  const totalPrice = meal.price * quantity;
+
   const newOrder = await Orders.create({
     mealId,
     userId: sessionUser.id,
-    totalPrice: quantity * meal.price,
+    totalPrice: totalPrice,
     quantity,
   });
 

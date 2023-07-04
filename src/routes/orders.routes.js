@@ -12,13 +12,15 @@ const router = express.Router();
 
 router.use(authMiddleware.protect);
 
-// router.post('/', usersMiddleware.validSessionUser, ordersController.createOrder);
-router.post('/', ordersController.createOrder);
+router.post(
+  '/',
+  validationsMiddleware.orderValidation,
+  ordersController.createOrder
+);
 
 router.get('/me', ordersController.findUserOrders);
 
 router
-  // .use(authMiddleware.protectAccountOwner)
   .route('/:id')
   .patch(ordersController.updateOrder)
   .delete(ordersController.deleteOrder);

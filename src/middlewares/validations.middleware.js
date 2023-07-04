@@ -88,3 +88,17 @@ exports.createMealValidation = [
     .withMessage('Price must be a number'),
   validFields,
 ];
+
+exports.orderValidation = [
+  body('quantity')
+    .notEmpty()
+    .withMessage('Quantity cannot be empty.')
+    .isInt()
+    .withMessage('Quantity must be a number'),
+  body('mealId')
+    .notEmpty()
+    .withMessage('mealId cannot be empty.')
+    .isInt()
+    .withMessage('mealId must be a number'),
+  validFields,
+];

@@ -10,31 +10,15 @@ const validationsMiddleware = require('../middlewares/validations.middleware');
 
 const router = express.Router();
 
-router.post(
-  '/signup',
-  validationsMiddleware.createUserValidation,
-  usersController.signup
-);
+router.post('/signup', validationsMiddleware.createUserValidation, usersController.signup);
 
-router.post(
-  '/login',
-  validationsMiddleware.loginUserValidation,
-  usersController.login
-);
+router.post('/login', validationsMiddleware.loginUserValidation, usersController.login);
 
 router.use(authMiddleware.protect);
 
-router.get(
-  '/orders',
-  usersMiddleware.validSessionUser,
-  usersController.findOrdersByUser
-);
+router.get('/orders', usersMiddleware.validSessionUser, usersController.findOrdersByUser);
 
-router.get(
-  '/orders/:id',
-  usersMiddleware.validSessionUser,
-  usersController.findOneOrderById
-);
+router.get('/orders/:id', usersMiddleware.validSessionUser, usersController.findOneOrderById);
 
 router.use('/:id', usersMiddleware.validUser);
 

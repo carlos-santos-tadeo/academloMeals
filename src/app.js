@@ -6,14 +6,16 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const sanitizer = require('perfect-express-sanitizer');
 
+//Gestion de errores
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/error.controller');
 
 // rutas
-const usersRouter = require('./routes/users.routes');
 const mealsRouter = require('./routes/meals.routes');
-const restaurantsRouter = require('./routes/restaurants.routes');
 const ordersRouter = require('./routes/orders.routes');
+const restaurantsRouter = require('./routes/restaurants.routes');
+const usersRouter = require('./routes/users.routes');
+
 
 const app = express();
 const limiter = rateLimit({
