@@ -19,11 +19,10 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (existentUser) {
     return res.status(404).json({
       status: 'error',
-      message: `There is already a user created in the database with the email: ${email}`,
+      message: `There is already a user created with this email: ${email}`,
     });
   }
 
-  //TODO esto debo de descomentarlo es para encriptar la contraseña
   const salt = await bcrypt.genSalt(12);
   const encryptedPassword = await bcrypt.hash(password, salt);
 
@@ -63,7 +62,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   if (!(await bcrypt.compare(password, user.password))) {
-    return next(new AppError(`Wrong email or password`, 401));
+    return next(new AppError(`Invalid email or password`, 401));
   }
 
   const token = await generateJWT(user.id);
@@ -166,8 +165,6 @@ exports.findOneOrderById = catchAsync(async (req, res, next) => {
       id:meal.restaurantId,
     },
   });
-
-
 
   res.status(200).json({
     status: 'success',

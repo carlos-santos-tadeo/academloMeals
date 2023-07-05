@@ -3,7 +3,6 @@ const Meals = require('../models/meals.model');
 const Restaurants = require('../models/restaurants.model');
 
 const catchAsync = require('../utils/catchAsync');
-const generateJWT = require('../utils/jwt');
 const AppError = require('../utils/appError');
 
 exports.createOrder = catchAsync(async (req, res, next) => {

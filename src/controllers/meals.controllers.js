@@ -3,34 +3,6 @@ const Restaurants = require('../models/restaurants.model');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-exports.findMeals = catchAsync(async (req, res, next) => {
-  const meals = await Meals.findAll({
-    where: {
-      status: 'active',
-    },
-    include: [
-      {
-        model: Restaurants,
-      },
-    ],
-  });
-  res.status(201).json({
-    status: 'success',
-    results: meals.length,
-    meals,
-  });
-});
-
-exports.findMealById = catchAsync(async (req, res, next) => {
-  const { meal } = req;
-  const {a}=req.params;
-  console.log(a)
-  res.status(201).json({
-    status: 'success',
-    meal,
-  });
-});
-
 exports.createNewMeal = catchAsync(async (req, res, next) => {
   const { name, price } = req.body;
   const { id } = req.params;
@@ -63,6 +35,35 @@ exports.createNewMeal = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.findMeals = catchAsync(async (req, res, next) => {
+  const meals = await Meals.findAll({
+    where: {
+      status: 'active',
+    },
+    include: [
+      {
+        model: Restaurants,
+      },
+    ],
+  });
+  res.status(201).json({
+    status: 'success',
+    results: meals.length,
+    meals,
+  });
+});
+
+exports.findMealById = catchAsync(async (req, res, next) => {
+  const { meal } = req;
+  const {a}=req.params;
+  console.log(a)
+  res.status(201).json({
+    status: 'success',
+    meal,
+  });
+});
+
 
 exports.updateMeal = catchAsync(async (req, res, next) => {
   const { meal } = req;
